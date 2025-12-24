@@ -1,5 +1,6 @@
 import os
 import argparse
+from prompts import system_prompt
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
@@ -16,7 +17,11 @@ args = parser.parse_args()
 
 messages = [types.Content(role="user", parts=[types.Part(text=args.user_prompt)])]
 
-response = client.models.generate_content(model="gemini-2.5-flash", contents=messages)
+response = client.models.generate_content(
+    model="gemini-2.5-flash", 
+    contents=messages,
+    config=types.GenerateContentConfig(system_instruction=system_prompt))
+
 if response.usage_metadata:
     prompt_token = response.usage_metadata.prompt_token_count
     response_token = response.usage_metadata.candidates_token_count
