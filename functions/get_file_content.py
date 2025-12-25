@@ -2,7 +2,7 @@ import os
 from config import MAX_CHARS
 from google.genai import types
 
-def get_file_content(working_dir, file_path):
+def get_file_content(working_dir: str, file_path: str) -> str:
     try:
         working_dir_abs = os.path.abspath(working_dir)
         target_file = os.path.normpath(os.path.join(working_dir_abs, file_path))
