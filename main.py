@@ -41,7 +41,7 @@ def main():
     sys.exit(1)
 
 
-def generate_content(client, messages, verbose):
+def generate_content(client: genai.Client, messages: list, verbose: bool):
     response = client.models.generate_content(
         model="gemini-2.5-flash",
         contents=messages,
